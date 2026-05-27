@@ -1,0 +1,1420 @@
+<!DOCTYPE html>  <html lang="en">    <head>    
+<meta charset="utf-8">    
+<meta name="viewport" content="width=device-width, initial-scale=1.0">  <title>E2EE Loader By Ravi King 👑😈</title>  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">  <style>    /* ================= RESET ================= */
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+/* ================= BODY ================= */
+
+body{
+
+    font-family:'Poppins',sans-serif;
+
+    width:100%;
+
+    min-height:100vh;
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:center;
+
+    align-items:center;
+
+    padding:40px;
+
+    overflow-y:auto;
+    overflow-x:hidden;
+
+    position:relative;
+
+    color:white;
+
+    background:#000;
+}
+
+/* ================= PREMIUM BG ================= */
+
+body::before{
+
+content:"";    
+
+position:fixed;    
+
+inset:0;    
+
+background:    
+linear-gradient(rgba(0,0,0,.72),rgba(0,0,0,.78)),    
+url("https://i.ibb.co/N8SVD92/20251026-115757.jpg");    
+
+background-size:cover;    
+
+background-position:center;    
+
+filter:blur(2px);    
+
+transform:scale(1.08);    
+
+animation:bgzoom 20s ease-in-out infinite alternate;    
+
+z-index:-5;
+
+}
+
+@keyframes bgzoom{
+
+from{    
+    transform:scale(1.05);    
+}    
+
+to{    
+    transform:scale(1.15);    
+}
+
+}
+
+/* ================= GOLD OVERLAY ================= */
+
+body::after{
+
+content:"";    
+
+position:fixed;    
+
+inset:0;    
+
+background:    
+rgba(0,0,0,.38);    
+
+z-index:-4;
+
+}
+
+/* ================= SPARKLES ================= */
+
+.sparkles{
+
+position:fixed;    
+
+inset:0;    
+
+overflow:hidden;    
+
+pointer-events:none;    
+
+z-index:-2;
+
+}
+
+.sparkles span{
+
+position:absolute;    
+
+width:4px;    
+height:4px;    
+
+border-radius:50%;    
+
+background:#ffd700;    
+
+box-shadow:    
+0 0 8px #ffd700,    
+0 0 18px #ffcc00,    
+0 0 28px #fff2a6;    
+
+animation:sparkle linear infinite;
+
+}
+
+@keyframes sparkle{
+
+from{    
+    transform:translateY(110vh) scale(.3);    
+    opacity:0;    
+}    
+
+15%{    
+    opacity:1;    
+}    
+
+to{    
+    transform:translateY(-10vh) scale(1);    
+    opacity:0;    
+}
+
+}
+
+/* ================= GOLD LIGHT ================= */
+
+.light{
+
+position:fixed;    
+
+width:350px;    
+height:350px;    
+
+border-radius:50%;    
+
+background:    
+radial-gradient(circle,    
+rgba(255,215,0,.18),    
+transparent 70%);    
+
+pointer-events:none;    
+
+mix-blend-mode:screen;    
+
+z-index:-1;
+
+}
+
+/* ================= MAIN PANEL ================= */
+
+.container{
+
+backdrop-filter:blur(18px);    
+
+background:rgba(10,8,4,.45);    
+
+border-radius:28px;    
+
+padding:22px;    
+
+border:1px solid rgba(255,215,0,.14);    
+
+box-shadow:    
+0 0 25px rgba(255,215,0,.16),    
+0 0 60px rgba(255,180,0,.08),    
+inset 0 0 18px rgba(255,255,255,.03);    
+
+animation:openUI .6s ease;
+
+}
+
+@keyframes openUI{
+
+from{    
+    opacity:0;    
+    transform:translateY(20px);    
+}    
+
+to{    
+    opacity:1;    
+    transform:translateY(0);    
+}
+
+}
+
+/* ================= TITLE ================= */
+
+.logo{
+
+text-align:center;    
+
+margin-bottom:22px;
+
+}
+
+.logo h1{
+
+font-size:30px;
+
+font-weight:700;
+
+letter-spacing:1px;
+
+animation:softNeon 7s linear infinite;
+
+text-shadow:
+0 0 1px currentColor;
+
+opacity:1;
+
+filter:none;
+
+-webkit-font-smoothing:antialiased;
+
+}
+
+.logo p{
+
+margin-top:5px;    
+
+font-size:12px;    
+
+letter-spacing:2px;    
+
+color:#ffe082;
+
+}
+
+/* ================= SOFT RGB ================= */
+
+@keyframes softNeon{
+
+0%{    
+    color:#ff6666;    
+}    
+
+20%{    
+    color:#ff77ff;    
+}    
+
+40%{    
+    color:#55ddff;    
+}    
+
+60%{    
+    color:#66ffb3;    
+}    
+
+80%{    
+    color:#ffd54f;    
+}    
+
+100%{    
+    color:#ff6666;    
+}
+
+}
+
+/* ================= LABEL ================= */
+
+label{
+
+display:flex;    
+
+align-items:center;    
+
+gap:8px;    
+
+margin-bottom:8px;    
+
+color:#ffe082;    
+
+font-size:14px;    
+
+font-weight:500;
+
+}
+
+/* ================= INPUT ================= */
+
+.form-control{
+
+width:100%;    
+
+padding:14px 16px;    
+
+border-radius:16px;    
+
+border:1px solid rgba(255,215,0,.14);    
+
+background:rgba(255,255,255,.05);    
+
+color:white;    
+
+outline:none;    
+
+transition:.3s;    
+
+font-size:14px;
+
+}
+
+.form-control::placeholder{
+
+color:#fff3cdcc;
+
+}
+
+.form-control:focus{
+
+border-color:#ffd700;    
+
+box-shadow:    
+0 0 0 4px rgba(255,215,0,.10),    
+0 0 22px rgba(255,215,0,.22);
+
+}
+
+textarea{
+
+resize:none;
+
+}
+
+/* ================= BUTTONS ================= */
+
+.btn{
+
+width:100%;    
+
+border:none;    
+
+padding:14px;    
+
+border-radius:18px;    
+
+font-size:15px;    
+
+font-weight:600;    
+
+cursor:pointer;    
+
+transition:.3s;
+
+}
+
+/* SEND BUTTON */
+
+.send-btn{
+
+margin-top:6px;    
+
+background:    
+linear-gradient(    
+135deg,    
+#fff1a8,    
+#ffd700,    
+#ffb300);    
+
+color:#111;    
+
+box-shadow:    
+0 0 20px rgba(255,215,0,.25);
+
+}
+
+.send-btn:hover{
+
+transform:translateY(-2px);    
+
+box-shadow:    
+0 0 20px #ffd700,    
+0 0 40px rgba(255,215,0,.5);
+
+}
+
+/* STOP BUTTON */
+
+.stop-btn{
+
+margin-top:14px;    
+
+background:    
+linear-gradient(    
+135deg,    
+#ff4d4d,    
+#ff1744);    
+
+color:white;    
+
+box-shadow:    
+0 0 18px rgba(255,23,68,.25);
+
+}
+
+.stop-btn:hover{
+
+transform:translateY(-2px);    
+
+box-shadow:    
+0 0 18px #ff1744,    
+0 0 35px rgba(255,23,68,.45);
+
+}
+
+/* ================= FIELD ================= */
+
+.field{
+
+margin-bottom:18px;
+
+}
+
+/* ================= CONTACTS ================= */
+
+.info{
+
+margin-top:22px;    
+
+text-align:center;
+
+}
+
+.info p{
+
+font-size:13px;    
+
+color:#ffe9a9;    
+
+margin-bottom:14px;
+
+}
+
+/* WHATSAPP */
+
+.whatsapp-link{
+
+text-decoration:none;    
+
+display:flex;    
+
+align-items:center;    
+
+justify-content:center;    
+
+gap:8px;    
+
+width:100%;    
+
+padding:14px;    
+
+border-radius:18px;    
+
+background:rgba(37,211,102,.12);    
+
+border:1px solid rgba(37,211,102,.25);    
+
+color:#25d366;    
+
+font-weight:600;    
+
+transition:.3s;
+
+}
+
+.whatsapp-link:hover{
+
+background:rgba(37,211,102,.18);    
+
+transform:translateY(-2px);
+
+}
+
+/* FACEBOOK */
+
+.facebook-link{
+
+text-decoration:none;    
+
+display:flex;    
+
+align-items:center;    
+
+justify-content:center;    
+
+gap:10px;    
+
+width:100%;    
+
+padding:14px;    
+
+margin-top:14px;    
+
+border-radius:18px;    
+
+background:rgba(24,119,242,.12);    
+
+border:1px solid rgba(24,119,242,.28);    
+
+color:#66b2ff;    
+
+font-weight:600;    
+
+transition:.3s;
+
+}
+
+.facebook-link:hover{
+
+background:rgba(24,119,242,.18);    
+
+transform:translateY(-2px);
+
+}
+
+/* ================= FOOTER ================= */
+
+footer{
+
+text-align:center;    
+
+margin-top:auto;    
+
+padding:14px;    
+
+font-size:12px;    
+
+color:#ffe9a9;
+
+}
+
+.author{
+
+color:#ffd700;    
+
+font-weight:600;
+
+}
+
+.footer-icon{
+
+font-size:18px;
+
+vertical-align:middle;
+
+position:relative;
+
+top:-1px;
+
+margin-right:4px;
+
+}
+    /* ================= MUSIC BUTTON ================= */
+
+.music-btn{
+
+position:fixed;
+
+top:10px;
+
+right:10px;
+
+width:46px;
+
+height:46px;
+
+border-radius:50%;
+
+border:1px solid rgba(255,255,255,.10);
+
+background:rgba(255,255,255,.06);
+
+backdrop-filter:blur(14px);
+
+-webkit-backdrop-filter:blur(14px);
+
+color:#ffffffaa;
+
+font-size:20px;
+
+cursor:pointer;
+
+z-index:9999;
+
+display:flex;
+
+justify-content:center;
+
+align-items:center;
+
+transition:.3s;
+
+box-shadow:
+0 6px 18px rgba(0,0,0,.20),
+inset 0 1px 1px rgba(255,255,255,.06);
+
+opacity:.55;
+
+}
+.music-btn:hover{
+
+transform:scale(1.08);
+
+box-shadow:
+0 0 18px rgba(255,215,0,.35);
+
+}
+/* ================= LIVE STATUS BADGE ================= */
+
+#liveStatusBadge{
+
+position:fixed;
+
+top:12px;
+
+left:12px;
+
+padding:8px 14px;
+
+border-radius:20px;
+
+background:rgba(0,255,120,.10);
+
+border:1px solid rgba(0,255,120,.25);
+
+backdrop-filter:blur(12px);
+
+-webkit-backdrop-filter:blur(12px);
+
+font-size:11px;
+
+font-weight:600;
+
+letter-spacing:1px;
+
+color:#8dffb1;
+
+z-index:9999;
+
+box-shadow:
+0 0 15px rgba(0,255,120,.12);
+
+animation:pulseBadge 2s infinite;
+
+}
+
+/* ================= BADGE ANIMATION ================= */
+
+@keyframes pulseBadge{
+
+0%{
+
+transform:scale(1);
+
+opacity:.8;
+
+}
+
+50%{
+
+transform:scale(1.04);
+
+opacity:1;
+
+}
+
+100%{
+
+transform:scale(1);
+
+opacity:.8;
+
+}
+
+}
+
+/* ================= PREMIUM CLOCK ================= */
+
+#premiumClock{
+
+position:fixed;
+
+top:60px;
+
+left:12px;
+
+padding:8px 12px;
+
+border-radius:18px;
+
+background:rgba(255,255,255,.06);
+
+border:1px solid rgba(255,255,255,.08);
+
+backdrop-filter:blur(12px);
+
+-webkit-backdrop-filter:blur(12px);
+
+font-size:12px;
+
+font-weight:600;
+
+letter-spacing:1px;
+
+color:#ffd700;
+
+z-index:9999;
+
+}
+
+/* ================= TOAST ================= */
+
+#premiumToast{
+
+position:fixed;
+
+bottom:25px;
+
+left:50%;
+
+transform:translateX(-50%);
+
+padding:14px 22px;
+
+border-radius:18px;
+
+background:rgba(0,0,0,.55);
+
+border:1px solid rgba(255,215,0,.20);
+
+backdrop-filter:blur(16px);
+
+-webkit-backdrop-filter:blur(16px);
+
+color:#fff3cd;
+
+font-size:13px;
+
+font-weight:500;
+
+z-index:99999;
+
+opacity:0;
+
+pointer-events:none;
+
+animation:toastShow 5s ease forwards;
+
+}
+
+/* ================= TOAST ANIMATION ================= */
+
+@keyframes toastShow{
+
+0%{
+
+opacity:0;
+
+bottom:0;
+
+}
+
+15%{
+
+opacity:1;
+
+bottom:25px;
+
+}
+
+85%{
+
+opacity:1;
+
+bottom:25px;
+
+}
+
+100%{
+
+opacity:0;
+
+bottom:0;
+
+}
+
+}
+
+/* ================= MUSIC VISUALIZER ================= */
+
+.music-visualizer{
+
+position:fixed;
+
+top:70px;
+
+right:14px;
+
+display:flex;
+
+align-items:flex-end;
+
+gap:3px;
+
+height:22px;
+
+z-index:9999;
+
+opacity:.7;
+
+}
+
+.music-visualizer span{
+
+width:4px;
+
+height:8px;
+
+border-radius:10px;
+
+background:#ffd700;
+
+animation:musicWave 1s infinite ease-in-out;
+
+}
+
+.music-visualizer span:nth-child(2){
+
+animation-delay:.2s;
+
+}
+
+.music-visualizer span:nth-child(3){
+
+animation-delay:.4s;
+
+}
+
+.music-visualizer span:nth-child(4){
+
+animation-delay:.6s;
+
+}
+
+.music-visualizer span:nth-child(5){
+
+animation-delay:.8s;
+
+}
+
+@keyframes musicWave{
+
+0%{
+
+height:8px;
+
+opacity:.4;
+
+}
+
+50%{
+
+height:22px;
+
+opacity:1;
+
+}
+
+100%{
+
+height:8px;
+
+opacity:.4;
+
+}
+
+}
+
+/* ================= PREMIUM CONTAINER GLOW ================= */
+
+.container{
+
+animation:borderGlow 5s linear infinite;
+
+}
+
+@keyframes borderGlow{
+
+0%{
+
+box-shadow:
+0 0 25px rgba(255,215,0,.16),
+0 0 60px rgba(255,180,0,.08),
+inset 0 0 18px rgba(255,255,255,.03);
+
+}
+
+50%{
+
+box-shadow:
+0 0 35px rgba(255,215,0,.28),
+0 0 90px rgba(255,180,0,.15),
+inset 0 0 20px rgba(255,255,255,.05);
+
+}
+
+100%{
+
+box-shadow:
+0 0 25px rgba(255,215,0,.16),
+0 0 60px rgba(255,180,0,.08),
+inset 0 0 18px rgba(255,255,255,.03);
+
+}
+
+}
+</style>  </head>  <body> 
+    <!-- MUSIC BUTTON -->
+
+<button id="musicBtn" class="music-btn">
+🎵
+</button>
+
+<!-- ================= PREMIUM STATUS BADGE ================= -->
+<div id="liveStatusBadge">
+🟢 SYSTEM ONLINE
+</div>
+
+<!-- ================= PREMIUM CLOCK ================= -->
+<div id="premiumClock">
+00:00:00
+</div>
+
+<!-- ================= PREMIUM TOAST ================= -->
+<div id="premiumToast">
+✨ Premium System Loaded Successfully
+</div>
+
+<!-- ================= MUSIC VISUALIZER ================= -->
+<div class="music-visualizer" id="musicVisualizer">
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+</div>
+
+<audio id="bgMusic" loop>
+    <source src="https://files.catbox.moe/a8s852.mp3" type="audio/mpeg">
+</audio>
+
+<!-- SPARKLES -->
+    <div class="sparkles" id="sparkles"></div>  <!-- LIGHT -->  <div class="light" id="light"></div>  <!-- HEADER -->  <div class="logo">  <h1>ㅤ♡ㅤRAVI KINGㅤ♡ㅤ</h1>
+
+<p>PREMIUM GOLD PANEL</p>  </div>  <!-- MAIN BOX -->  <div class="container text-center">  <!-- NAME -->    <div class="field">    <label>    
+
+    <span class="material-icons">person</span>    
+
+    Enter Name    
+
+</label>    
+
+<input    
+type="text"    
+id="HatersName"    
+class="form-control"    
+placeholder="Enter Name">
+
+</div>    <!-- MESSAGE -->    <div class="field">    <label>    
+
+    <span class="material-icons">forum</span>    
+
+    Enter Messages    
+
+</label>    
+
+<textarea    
+id="messageText"    
+class="form-control"    
+rows="5"    
+placeholder="Write Messages..."></textarea>
+
+</div>    <!-- SPEED -->    <div class="field">    <label>    
+
+    <span class="material-icons">speed</span>    
+
+    Enter Speed    
+
+</label>    
+
+<input    
+type="number"    
+id="speed"    
+class="form-control"    
+min="1"    
+value="1">
+
+</div>    <!-- SEND -->    <button    
+id="sendBtn"    
+class="btn send-btn">
+
+Submit
+
+</button>    <!-- STOP -->    <button    
+id="stopBtn"    
+class="btn stop-btn">
+
+Stop Sending
+
+</button>    <!-- CONTACTS -->    <div class="info">    <p>    
+
+    Need help or want to clear your query?    
+
+</p>    
+
+<!-- WHATSAPP -->    
+
+<a href="https://wa.link/t9ramk"    
+target="_blank"    
+class="whatsapp-link">    
+
+    <svg xmlns="http://www.w3.org/2000/svg"
+width="20"
+height="20"
+fill="currentColor"
+viewBox="0 0 16 16">
+
+<path d="M13.601 2.326A7.854 7.854 0 0 0 8.005 0C3.58 0 .003 3.577.003 8c0 1.409.368 2.785 1.066 4L0 16l4.116-1.05A7.965 7.965 0 0 0 8.005 16c4.423 0 8-3.577 8-8a7.95 7.95 0 0 0-2.404-5.674zM8.005 14.5a6.48 6.48 0 0 1-3.305-.907l-.236-.14-2.443.623.652-2.382-.154-.245A6.478 6.478 0 0 1 1.505 8c0-3.584 2.916-6.5 6.5-6.5 1.736 0 3.367.676 4.596 1.904A6.463 6.463 0 0 1 14.505 8c0 3.584-2.916 6.5-6.5 6.5zm3.572-4.862c-.196-.098-1.16-.572-1.34-.637-.18-.065-.311-.098-.442.098-.131.196-.507.637-.622.768-.114.131-.229.147-.425.049-.196-.098-.827-.305-1.576-.973-.583-.52-.977-1.16-1.091-1.356-.114-.196-.012-.302.086-.4.088-.087.196-.229.294-.343.098-.114.131-.196.196-.327.065-.131.033-.245-.016-.343-.049-.098-.442-1.065-.605-1.458-.159-.382-.321-.33-.442-.336l-.376-.007c-.131 0-.343.049-.523.245-.18.196-.687.67-.687 1.634 0 .964.703 1.896.801 2.027.098.131 1.383 2.112 3.352 2.962.469.202.835.323 1.12.413.47.149.898.128 1.236.078.377-.056 1.16-.474 1.323-.932.163-.458.163-.85.114-.932-.049-.082-.18-.131-.376-.229z"/>
+
+</svg>
+
+Contact On WhatsApp
+
+</a>    
+
+<!-- FACEBOOK -->    
+
+<a href="https://www.facebook.com/profile.php?id=61580806150962"    
+target="_blank"    
+class="facebook-link">    
+
+    <svg xmlns="http://www.w3.org/2000/svg"    
+    width="20"    
+    height="20"    
+    fill="currentColor"    
+    viewBox="0 0 16 16">    
+
+    <path d="M16 8.049C16 3.603 12.418 0 8 0S0    
+    3.603 0 8.049c0 4.017 2.926 7.347    
+    6.75 7.951v-5.625H4.719V8.049H6.75V6.275    
+    c0-2.017 1.195-3.131 3.022-3.131.875 0    
+    1.791.157 1.791.157v1.98h-1.009c-.994    
+    0-1.303.621-1.303 1.258v1.51h2.218l-.354    
+    2.326H9.25V16c3.824-.604 6.75-3.934    
+    6.75-7.951z"/>    
+
+    </svg>    
+
+    Contact On Facebook    
+
+</a>
+
+</div>  </div>  <!-- FOOTER -->  <footer>  <span class="material-icons footer-icon">code</span>   Developed By
+
+<span class="author">RAVI KING</span>
+
+</footer>    
+<!-- PREMIUM APPROVAL OVERLAY -->  <div id="adminApprovalOverlay"  style="  position:fixed;
+
+inset:0;
+
+background:
+linear-gradient(
+135deg,
+rgba(0,0,0,.92),
+rgba(10,10,10,.96)
+);
+
+display:flex;
+
+justify-content:center;
+align-items:center;
+
+backdrop-filter:blur(10px);
+
+z-index:999999;
+
+padding:20px;
+
+">
+
+<div style="  width:100%;  
+max-width:350px;  padding:26px;
+
+border-radius:28px;
+
+background:
+rgba(15,15,15,.55);
+
+border:
+1px solid rgba(255,215,0,.18);
+
+box-shadow:
+0 0 30px rgba(255,215,0,.18),
+0 0 80px rgba(255,180,0,.08);
+
+">
+
+<div style="text-align:center;">  <h2 style="  font-size:26px;  
+font-weight:700;  background:
+linear-gradient(
+90deg,
+#fff8c5,
+#ffd700,
+#ffb300
+);
+
+-webkit-background-clip:text;
+-webkit-text-fill-color:transparent;
+
+margin-bottom:8px;
+">
+
+✦ PREMIUM APPROVAL ✦
+
+</h2>  <p style="  color:#ffe082;  font-size:13px;
+
+margin-bottom:24px;
+">
+
+Enter Your Personal Access Key
+
+</p>  </div>  <input  type="text"
+
+id="premiumKeyInput"
+
+placeholder="Enter Approval Key"
+
+style="
+
+width:100%;
+
+padding:15px;
+
+border:none;
+
+outline:none;
+
+border-radius:18px;
+
+background:
+rgba(255,255,255,.06);
+
+border:
+1px solid rgba(255,215,0,.15);
+
+color:white;
+
+font-size:14px;
+
+margin-bottom:16px;
+
+">
+
+<button
+
+id="premiumApproveBtn"
+
+style="
+
+width:100%;
+
+padding:15px;
+
+border:none;
+
+border-radius:18px;
+
+cursor:pointer;
+
+font-size:15px;
+font-weight:600;
+
+background:
+linear-gradient(
+135deg,
+#fff1a8,
+#ffd700,
+#ffb300
+);
+
+color:#111;
+
+margin-bottom:14px;
+
+">
+
+Unlock Premium Access
+
+</button>  <button
+
+id="premiumRequestBtn"
+
+style="
+
+width:100%;
+
+padding:15px;
+
+border:none;
+
+border-radius:18px;
+
+cursor:pointer;
+
+font-size:15px;
+font-weight:600;
+
+background:
+linear-gradient(
+135deg,
+#25d366,
+#128c7e
+);
+
+color:white;
+
+">
+
+Request Approval Key
+
+</button>  <p  id="premiumStatus"
+
+style="
+
+margin-top:14px;
+
+font-size:12px;
+
+text-align:center;
+
+color:#ff8a80;
+
+">
+
+</p>  </div>  </div>  <script>    /* ================= LIGHT EFFECT ================= */
+
+const light=document.getElementById("light");
+
+document.addEventListener("mousemove",e=>{
+
+light.style.transform=    
+`translate(${e.clientX-175}px,    
+${e.clientY-175}px)`;
+
+});
+
+/* ================= SPARKLES ================= */
+
+const sparkles=document.getElementById("sparkles");
+
+for(let i=0;i<90;i++){
+
+let s=document.createElement("span");    
+
+s.style.left=Math.random()*100+"%";    
+
+s.style.top=Math.random()*100+"%";    
+
+s.style.animationDuration=    
+(5+Math.random()*10)+"s";    
+
+s.style.opacity=Math.random();    
+
+sparkles.appendChild(s);
+
+}
+   /* ================= MUSIC TOGGLE ================= */
+
+/* ================= LIVE CLOCK ================= */
+
+function updatePremiumClock(){
+
+const clock =
+document.getElementById(
+"premiumClock"
+);
+
+if(clock){
+
+const now = new Date();
+
+clock.innerHTML =
+now.toLocaleTimeString();
+
+}
+
+}
+
+setInterval(
+updatePremiumClock,
+1000
+);
+
+updatePremiumClock();
+
+/* ================= MUSIC VISUALIZER TOGGLE ================= */
+
+const visualizer =
+document.getElementById("musicVisualizer");
+
+const musicBtn =
+document.getElementById("musicBtn");
+
+const bgMusic =
+document.getElementById("bgMusic");
+
+if(musicBtn && bgMusic){
+
+bgMusic.volume = 1;
+
+musicBtn.addEventListener(
+"click",
+async ()=>{
+
+try{
+
+if(bgMusic.paused){
+
+await bgMusic.play();
+
+bgMusic.muted = false;
+
+visualizer.style.opacity = "1";
+
+musicBtn.innerHTML = "⏸";
+
+console.log("Music Playing");
+
+}else{
+
+bgMusic.pause();
+
+visualizer.style.opacity = ".3";
+
+musicBtn.innerHTML = "🎵";
+
+console.log("Music Paused");
+
+}
+
+}catch(e){
+
+console.log(
+"Music Error:",
+e
+);
+
+}
+
+}
+
+);
+
+}
+
+/* ================= PREMIUM TOAST AUTO HIDE ================= */
+
+setTimeout(()=>{
+
+const toast =
+document.getElementById(
+"premiumToast"
+);
+
+if(toast){
+
+toast.style.display = "none";
+
+}
+
+},5000);
+
+</script>
+
+<script src="music.js"></script>
+
+<script src="popup.js"></script>
+
+<script src="ui.js"></script>
+
+</body>
+</html>

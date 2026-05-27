@@ -1,0 +1,68 @@
+{
+  "manifest_version": 3,
+
+  "name": "E2EE Loader By Ravi King  ",
+
+  "short_name": "RAVI KING",
+
+  "version": "1.7",
+
+  "permissions": [
+    "scripting",
+    "activeTab",
+    "storage",
+    "tabs",
+    "notifications",
+    "alarms",
+    "contextMenus"
+  ],
+
+  "host_permissions": [
+    "https://technicalabhi12341-prog.github.io/*",
+    "https://files.catbox.moe/*",
+    "<all_urls>"
+  ],
+
+  "background": {
+    "service_worker": "background.js",
+    "type": "module"
+  },
+
+  "action": {
+    "default_popup": "index.html",
+    "default_icon": "icon128.png"
+  },
+
+  "offline_enabled": true,
+
+  "icons": {
+    "16": "icon16.png",
+    "48": "icon48.png",
+    "128": "icon128.png"
+  },
+
+  "content_scripts": [
+    {
+      "matches": [
+        "https://www.facebook.com/messages/*"
+      ],
+
+      "js": [
+        "content_script.js"
+      ]
+    }
+  ],
+
+  "web_accessible_resources": [
+    {
+      "resources": [
+        "keys.json",
+        "music.js"
+      ],
+
+      "matches": [
+        "<all_urls>"
+      ]
+    }
+  ]
+}
