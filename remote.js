@@ -21,3 +21,7 @@ updateCpuRam();
 updateOnlineStatus();
 
 updateSession();
+
+alert("PANEL START");
+
+createPremiumPanel();
