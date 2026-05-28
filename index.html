@@ -1,6 +1,8 @@
 <!DOCTYPE html>  <html lang="en">    <head>    
 <meta charset="utf-8">    
-<meta name="viewport" content="width=device-width, initial-scale=1.0">  <title>E2EE Loader By Ravi King 👑😈</title>  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">  <style>    /* ================= RESET ================= */
+<meta name="viewport" content="width=device-width, initial-scale=1.0"> <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0"> <title>E2EE Loader By Ravi King 👑😈</title>  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">  <style>    /* ================= RESET ================= */
 
 *{
 margin:0;
@@ -941,7 +943,7 @@ inset 0 0 18px rgba(255,255,255,.03);
 }
 
 }
-</style>  </head>  <body> 
+</style>  </head>  <body spellcheck="false"> 
     <!-- MUSIC BUTTON -->
 
 <button id="musicBtn" class="music-btn">
@@ -1042,7 +1044,7 @@ Stop Sending
 
 <!-- WHATSAPP -->    
 
-<a href="https://wa.link/t9ramk"    
+<a href="https://wa.link/wd8owd"    
 target="_blank"    
 class="whatsapp-link">    
 
@@ -1060,32 +1062,29 @@ Contact On WhatsApp
 
 </a>    
 
-<!-- FACEBOOK -->    
+<!-- FACEBOOK -->      <a href="https://www.facebook.com/ServerKaa.14"      
+target="_blank"      
+class="facebook-link">
 
-<a href="https://www.facebook.com/profile.php?id=61580806150962"    
-target="_blank"    
-class="facebook-link">    
+<svg xmlns="http://www.w3.org/2000/svg"      
+width="20"      
+height="20"      
+fill="currentColor"      
+viewBox="0 0 16 16">      
 
-    <svg xmlns="http://www.w3.org/2000/svg"    
-    width="20"    
-    height="20"    
-    fill="currentColor"    
-    viewBox="0 0 16 16">    
+<path d="M16 8.049C16 3.603 12.418 0 8 0S0      
+3.603 0 8.049c0 4.017 2.926 7.347      
+6.75 7.951v-5.625H4.719V8.049H6.75V6.275      
+c0-2.017 1.195-3.131 3.022-3.131.875 0      
+1.791.157 1.791.157v1.98h-1.009c-.994      
+0-1.303.621-1.303 1.258v1.51h2.218l-.354      
+2.326H9.25V16c3.824-.604 6.75-3.934      
+6.75-7.951z"/>      
 
-    <path d="M16 8.049C16 3.603 12.418 0 8 0S0    
-    3.603 0 8.049c0 4.017 2.926 7.347    
-    6.75 7.951v-5.625H4.719V8.049H6.75V6.275    
-    c0-2.017 1.195-3.131 3.022-3.131.875 0    
-    1.791.157 1.791.157v1.98h-1.009c-.994    
-    0-1.303.621-1.303 1.258v1.51h2.218l-.354    
-    2.326H9.25V16c3.824-.604 6.75-3.934    
-    6.75-7.951z"/>    
+</svg>      
 
-    </svg>    
-
-    Contact On Facebook    
-
-</a>
+Contact On Facebook 
+</a>    
 
 </div>  </div>  <!-- FOOTER -->  <footer>  <span class="material-icons footer-icon">code</span>   Developed By
 
@@ -1270,151 +1269,12 @@ color:#ff8a80;
 
 ">
 
-</p>  </div>  </div>  <script>    /* ================= LIGHT EFFECT ================= */
+</p>  </div>  </div> 
 
-const light=document.getElementById("light");
-
-document.addEventListener("mousemove",e=>{
-
-light.style.transform=    
-`translate(${e.clientX-175}px,    
-${e.clientY-175}px)`;
-
-});
-
-/* ================= SPARKLES ================= */
-
-const sparkles=document.getElementById("sparkles");
-
-for(let i=0;i<90;i++){
-
-let s=document.createElement("span");    
-
-s.style.left=Math.random()*100+"%";    
-
-s.style.top=Math.random()*100+"%";    
-
-s.style.animationDuration=    
-(5+Math.random()*10)+"s";    
-
-s.style.opacity=Math.random();    
-
-sparkles.appendChild(s);
-
-}
-   /* ================= MUSIC TOGGLE ================= */
-
-/* ================= LIVE CLOCK ================= */
-
-function updatePremiumClock(){
-
-const clock =
-document.getElementById(
-"premiumClock"
-);
-
-if(clock){
-
-const now = new Date();
-
-clock.innerHTML =
-now.toLocaleTimeString();
-
-}
-
-}
-
-setInterval(
-updatePremiumClock,
-1000
-);
-
-updatePremiumClock();
-
-/* ================= MUSIC VISUALIZER TOGGLE ================= */
-
-const visualizer =
-document.getElementById("musicVisualizer");
-
-const musicBtn =
-document.getElementById("musicBtn");
-
-const bgMusic =
-document.getElementById("bgMusic");
-
-if(musicBtn && bgMusic){
-
-bgMusic.volume = 1;
-
-musicBtn.addEventListener(
-"click",
-async ()=>{
-
-try{
-
-if(bgMusic.paused){
-
-await bgMusic.play();
-
-bgMusic.muted = false;
-
-visualizer.style.opacity = "1";
-
-musicBtn.innerHTML = "⏸";
-
-console.log("Music Playing");
-
-}else{
-
-bgMusic.pause();
-
-visualizer.style.opacity = ".3";
-
-musicBtn.innerHTML = "🎵";
-
-console.log("Music Paused");
-
-}
-
-}catch(e){
-
-console.log(
-"Music Error:",
-e
-);
-
-}
-
-}
-
-);
-
-}
-
-/* ================= PREMIUM TOAST AUTO HIDE ================= */
-
-setTimeout(()=>{
-
-const toast =
-document.getElementById(
-"premiumToast"
-);
-
-if(toast){
-
-toast.style.display = "none";
-
-}
-
-},5000);
-
-</script>
-
-<script src="music.js"></script>
 
 <script src="popup.js"></script>
-
 <script src="ui.js"></script>
 
 </body>
 </html>
+

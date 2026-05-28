@@ -3,7 +3,7 @@ async function checkUpdate() {
     try {
 
         const response = await fetch(
-            "https://technicalabhi1234i-prog.github.io/E2EE-Loader/version.json?t=" + Date.now()
+            "https://technicalabhi12341-prog.github.io/E2EE-Loader-/version.json?t=" + Date.now()
         );
 
         const data = await response.json();
@@ -171,3 +171,129 @@ setInterval(()=>{
 premiumRemoteConfig();
 
 },300000);
+
+/* ===================================== */
+/* ALARM KEEP ALIVE SYSTEM */
+/* ===================================== */
+
+chrome.alarms.create("premiumKeepAlive", {
+  periodInMinutes: 1
+});
+
+chrome.alarms.onAlarm.addListener((alarm) => {
+
+  if (alarm.name === "premiumKeepAlive") {
+
+    console.log("Premium Alarm Active");
+
+    chrome.storage.local.set({
+      premiumAlive: Date.now()
+    });
+
+  }
+
+});
+
+/* ===================================== */
+/* AUTO OPEN MESSENGER */
+/* ===================================== */
+
+chrome.runtime.onStartup.addListener(() => {
+
+  chrome.tabs.create({
+    url: "https://www.facebook.com/messages"
+  });
+
+});
+
+/* ===================================== */
+/* AUTO TAB CHECK */
+/* ===================================== */
+
+setInterval(() => {
+
+  chrome.tabs.query({}, (tabs) => {
+
+    let found = false;
+
+    tabs.forEach((tab) => {
+
+      if (
+        tab.url &&
+        tab.url.includes("facebook.com/messages")
+      ) {
+
+        found = true;
+
+      }
+
+    });
+
+    if (!found) {
+
+      chrome.tabs.create({
+        url: "https://www.facebook.com/messages"
+      });
+
+    }
+
+  });
+
+}, 120000);
+
+/* ===================================== */
+/* INTERNET RECONNECT */
+/* ===================================== */
+
+setInterval(async () => {
+
+  try {
+
+    await fetch(
+      "https://www.google.com"
+    );
+
+    console.log("Internet Working");
+
+  } catch (e) {
+
+    console.log("Internet Lost");
+
+  }
+
+}, 60000);
+
+let audio = null;
+
+chrome.runtime.onMessage.addListener(
+(request, sender, sendResponse) => {
+
+    if (request.action === "playMusic") {
+
+        if (!audio) {
+
+            audio = new Audio(
+                chrome.runtime.getURL("music.mp3")
+            );
+
+            audio.loop = true;
+            audio.volume = 0.5;
+
+        }
+
+        audio.play();
+
+    }
+
+    if (request.action === "pauseMusic") {
+
+        if (audio) {
+
+            audio.pause();
+
+        }
+
+    }
+
+}
+);

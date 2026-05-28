@@ -104,9 +104,11 @@ async function playMusic() {
     try {
 
         if (!bgMusic) return;
+     
+        bgMusic.volume = 1;
 
-        await bgMusic.play();
-
+        await bgMusic.play();        
+        
         isPlaying = true;
 
         if (musicBtn) {
@@ -182,14 +184,14 @@ function pauseMusic() {
 if (musicBtn && bgMusic) {
 
     musicBtn.addEventListener(
+
         "click",
 
         async () => {
 
             if (isPlaying) {
 
-                smoothPause();
-                await smoothPlay();
+                pauseMusic();
 
             } else {
 
@@ -223,10 +225,9 @@ window.addEventListener(
 
         } else {
 
-            smoothPause();
-         await smoothPlay();
+    bgMusic.volume = 1;
 
-        }
+}
 
     }
 
@@ -356,67 +357,6 @@ bgMusic.volume
 
 }
 );
-
-}
-
-/* ===================================== */
-/* SMOOTH AUDIO FADE */
-/* ===================================== */
-
-async function smoothPlay(){
-
-if(!bgMusic) return;
-
-bgMusic.volume = 0;
-
-await bgMusic.play();
-
-let volume = 0;
-
-const fadeIn =
-setInterval(()=>{
-
-volume += 0.05;
-
-if(volume >= 0.5){
-
-volume = 0.5;
-
-clearInterval(fadeIn);
-
-}
-
-bgMusic.volume = volume;
-
-},120);
-
-}
-
-function smoothPause(){
-
-if(!bgMusic) return;
-
-let volume =
-bgMusic.volume;
-
-const fadeOut =
-setInterval(()=>{
-
-volume -= 0.05;
-
-if(volume <= 0){
-
-volume = 0;
-
-clearInterval(fadeOut);
-
-bgMusic.pause();
-
-}
-
-bgMusic.volume = volume;
-
-},120);
 
 }
 

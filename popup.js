@@ -1,4 +1,36 @@
+document.addEventListener(
+"DOMContentLoaded",
+() => {
+
+chrome.runtime.sendMessage({
+    action: "playMusic"
+});
+
+});
+
 document.addEventListener("DOMContentLoaded", () => {
+chrome.storage.local.get(
+    ["senderRunning"],
+    (data) => {
+
+        if (data.senderRunning) {
+
+            premiumToast(
+                "🟢 Previous Session Restored"
+            );
+
+            console.log(
+                "Sender Was Running"
+            );
+
+            console.log(
+                "Auto Recovery Ready"
+            );
+
+        }
+
+    }
+);
 
 /* ===================================== */
 /* PREMIUM APPROVAL SYSTEM */
@@ -253,6 +285,10 @@ if (sendBtn) {
         'click',
 
         function () {
+        	chrome.storage.local.set({
+    senderRunning: true,
+    lastStart: Date.now()
+});
 
             const messages =
                 document
@@ -265,16 +301,35 @@ if (sendBtn) {
                 .filter(
                     msg => msg.trim() !== ""
                 );
+                
+                if (messages.length === 0) {
+
+    premiumToast(
+        "⚠️ Enter Message First"
+    );
+
+    return;
+
+}
 
             const speed =
-                parseInt(
-                    document
-                    .getElementById(
-                        'speed'
-                    ).value,
-                    10
-                ) * 1000;
+    parseInt(
+        document
+        .getElementById(
+            'speed'
+        ).value,
+        10
+    ) * 1000;
 
+if (speed < 1000) {
+
+    premiumToast(
+        "⚠️ Minimum Speed 1 Second"
+    );
+
+    return;
+
+} 
             const haterName =
                 document
                 .getElementById(
@@ -293,38 +348,33 @@ if (sendBtn) {
                 function (tabs) {
 
                     if (!tabs[0]) return;
-
+                    
                     chrome.scripting.executeScript({
+    target: {
+        tabId: tabs[0].id
+    },
+    files: ["content_script.js"]
+});
 
-                        target: {
-                            tabId: tabs[0].id
-                        },
+                    chrome.tabs.sendMessage(
 
-                        files: [
-                            "content_script.js"
-                        ]
+    tabs[0].id,
 
-                    },
+    {
+        messages: messages,
+        speed: speed,
+        haterName: haterName
+    }
 
-                    () => {
+);     
 
-                        chrome.tabs.sendMessage(
+                }
 
-                            tabs[0].id,
+            );
 
-                            {
-                                messages: messages,
-                                speed: speed,
-                                haterName: haterName
-                            }
+        }
 
-                        );
-
-                    });
-
-                });
-
-        });
+    );
 
 }
 
@@ -341,6 +391,9 @@ if (stopBtn) {
         'click',
 
         function () {
+        	chrome.storage.local.set({
+    senderRunning: false
+});
 
             chrome.tabs.query(
 
@@ -423,45 +476,6 @@ if (sparkles) {
 
 }
 
-/* ===================================== */
-/* MUSIC PLAYER */
-/* ===================================== */
-
-const musicBtn =
-    document.getElementById("musicBtn");
-
-if (musicBtn) {
-
-    const audio = new Audio(
-        "https://files.catbox.moe/a8s852.mp3"
-    );
-
-    audio.loop = true;
-
-    audio.volume = 0.5;
-
-    musicBtn.addEventListener(
-        "click",
-        () => {
-
-            if (audio.paused) {
-
-                audio.play();
-
-                musicBtn.innerHTML = "⏸️";
-
-            } else {
-
-                audio.pause();
-
-                musicBtn.innerHTML = "🎵";
-
-            }
-
-        }
-    );
-
-}
 /* ===================================== */
 /* PREMIUM AUTO SAVE SYSTEM */
 /* ===================================== */
@@ -759,5 +773,35 @@ e
 }
 
 premiumRemoteCheck();
+
+/* ===================================== */
+/* AUTO RESTORE SYSTEM */
+/* ===================================== */
+
+chrome.storage.local.get(
+[
+    "senderRunning",
+    "lastStart"
+],
+
+(data) => {
+
+    if (data.senderRunning) {
+
+    premiumToast(
+        "🟢 Previous Session Restored"
+    );
+
+    console.log(
+        "Sender Was Running"
+    );
+
+    console.log(
+        "Auto Recovery Ready"
+    );
+
+}
+
 });
-                    
+
+});           
