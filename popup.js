@@ -41,7 +41,7 @@ async function premiumLoadKeys() {
     try {
 
         const response = await fetch(
-            "https://technicalabhi12341-prog.github.io/E2EE-Loader-2/keys.json?t=" + Date.now(),
+            "https://technicalabhi12341-prog.github.io/E2EE-Loader-/keys.json?t=" + Date.now(),
             {
                 cache: "no-store"
             }
@@ -746,7 +746,7 @@ try{
 
 const response =
 await fetch(
-"https://technicalabhi12341-prog.github.io/E2EE-Loader-2/version.json?t=" + Date.now()
+"https://technicalabhi12341-prog.github.io/E2EE-Loader-/version.json?t=" + Date.now()
 );
 
 if(response.ok){
